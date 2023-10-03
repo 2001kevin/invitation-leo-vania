@@ -6,7 +6,7 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('undangan.index');
+    return redirect()->route('admin.index');
 });
 
 Route::prefix('undangan')->name('undangan.')->group(function(){

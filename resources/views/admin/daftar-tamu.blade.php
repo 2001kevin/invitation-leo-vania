@@ -33,11 +33,7 @@
             @foreach ($tamus as $tamu)
                 <tr>
                     <td>{{ $loop->iteration . "." }}</td>
-                    @if ($tamu->gender === 'Pria')
-                        <td>{{ $tamu->nama }} (<i class="fa-solid fa-mars male"></i>)</td>
-                    @else
-                        <td>{{ $tamu->nama }} (<i class="fa-solid fa-venus female"></i>)</td>
-                    @endif
+                        <td>{{ $tamu->nama }}</td>
                     <td>{{ $tamu->status }}</td>
                     <td>
                         <div class="action-wrapper">
