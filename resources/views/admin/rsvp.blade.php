@@ -22,6 +22,7 @@
                 <th>No</th>
                 <th>Nama</th>
                 <th>Kehadiran</th>
+                <th>Jumlah</th>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +35,7 @@
                     @else
                         <td class="tidak-hadir">{{ $tamu->kehadiran }}</td>
                     @endif
+                    <td>{{ $tamu->jumlah_hadir }} tamu</td>
                 </tr>
             @endforeach
         </tbody>

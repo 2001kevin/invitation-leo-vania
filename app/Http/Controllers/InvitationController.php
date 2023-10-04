@@ -39,12 +39,13 @@ class InvitationController extends Controller
 
         $req->validate([
             'nama' => 'required',
-            'kehadiran' => 'required'
+            'kehadiran' => 'required',
         ]);
         $rsvp = new rsvp();
 
         $rsvp->nama = $req->nama;
         $rsvp->kehadiran = $req->kehadiran;
+        $rsvp->jumlah_hadir = $req->attendance;
         $success = $rsvp->save();
 
         if($success){

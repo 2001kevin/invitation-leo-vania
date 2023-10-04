@@ -8,6 +8,7 @@ use App\Models\wishes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\URL;
 
 class AdminController extends Controller
 {
@@ -25,7 +26,11 @@ class AdminController extends Controller
         foreach ($tamus as $tamu) {
             $namaTamu = $tamu->nama;
             $phoneNumber = (string) $tamu->no_tlp;
-            $link = "http://127.0.0.1:8000/undangan/" . $tamu->link;
+            // $link = URL::to('to', $namaTamu);
+            // return $link;
+            $websiteUrl = url('/');
+            $link = $websiteUrl."/undangan/" . $tamu->link;
+            // return $link;
 
             $isiPesan = "Dear {$namaTamu},\n\nMari datang ke acara pernikahan Leonardo Da Vinci dan Vania Putri Mahkota, yang akan dilaksanakan pada :\nWaktu : Jumat, 31 Mei 2023\nTempat : Nusa Dua, Denpasar, Bali\n\nUntuk lebih lengkapnya bisa dicek melalui tautan {$link} ini, dan mohon berikan juga respon anda terkait kehadiran anda dalam perayaan suci ini.\n\nSalam hangat,\nLeo dan Vania";
 
@@ -99,7 +104,8 @@ class AdminController extends Controller
         $title = 'rsvp';
         $jumlahHadir = rsvp::where('deleted', 0)->where('kehadiran', 'Attend')->count();
         $jumlahTidakHadir = rsvp::where('deleted', 0)->where('kehadiran', 'Not Attend')->count();
-
+        $jumlahTamu = rsvp::where('deleted', 0)->get();
+        return $jumlahTamu;
         $tamus = rsvp::where('deleted', 0)->orderBy('kehadiran', 'ASC')->get();
 
         return view('admin.rsvp', compact(
